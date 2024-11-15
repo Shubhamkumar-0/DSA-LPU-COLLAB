@@ -11,6 +11,18 @@ public:
 };
 void insert(Node*& head, int value) {
     Node* newNode = new Node(value);
+    if (head == nullptr) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+void insertAtBeginning(Node*& head, int value) {
+    Node* newNode = new Node(value);
     newNode->next = head;
     head = newNode;
 }
@@ -33,5 +45,9 @@ int main() {
     }
     cout << "Linked List: ";
     display(head);
+    insertAtBeginning(head, 4);
+    cout << "Linked List after inserting 4 at beginning: ";
+    display(head);   
     return 0;
 }
+
