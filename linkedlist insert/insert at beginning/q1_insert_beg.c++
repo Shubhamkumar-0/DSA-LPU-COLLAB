@@ -11,8 +11,20 @@ public:
 };
 void insert(Node*& head, int value) {
     Node* newNode = new Node(value);
-    newNode->next = head; 
-    head = newNode;       
+    if (head == nullptr) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+void insertAtBeginning(Node*& head, int value) {
+    Node* newNode = new Node(value);
+    newNode->next = head;
+    head = newNode;
 }
 void display(Node* head) {
     Node* temp = head;
@@ -24,13 +36,15 @@ void display(Node* head) {
 }
 int main() {
     Node* head = nullptr;
-    insert(head, 1); 
-    insert(head, 3); 
-    insert(head, 6); 
-    insert(head, 7); 
-    insert(head, 4); 
-    insert(head, 2);
-    cout << "Linked List: ";
+    insert(head, 1);
+    insert(head, 3);
+    insert(head, 5);
+    insert(head, 7);
+    insert(head, 9);
+    cout << "Linked List before inserting at beginning: ";
+    display(head);
+    insertAtBeginning(head, 4);
+    cout << "Linked List after inserting 4 at beginning: ";
     display(head);
     return 0;
 }
