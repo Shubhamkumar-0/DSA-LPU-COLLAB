@@ -1,0 +1,17 @@
+void dfs(int node, bool visited[]) {
+    visited[node] = true;
+    cout << node << " ";
+
+    // Traverse all adjacent nodes in reverse order
+    for (int i = 0; i < max_v; i++) {
+        if (graph[node][i] == 1 && !visited[i]) {
+            dfs(i, visited);
+        }
+    }
+}
+
+int main() {
+    bool visited[max_v] = {false};
+    dfs(5, visited); // Start DFS from vertex 5
+    return 0;
+}  use this one
